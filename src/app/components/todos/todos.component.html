@@ -1,3 +1,2 @@
-<p>todos works!</p>
 
-<app-todoitem *ngFor="let todo of todos" [todo]="todo"></app-todoitem>
+<app-todoitem *ngFor="let todo of todos" [todo]="todo" (deleteTodo)="deleteTodoParent($event)" ></app-todoitem>

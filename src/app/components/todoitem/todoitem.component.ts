@@ -1,13 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Todo } from 'src/app/model/todo';
 
 @Component({
   selector: 'app-todoitem',
   templateUrl: './todoitem.component.html',
-  styleUrls: ['./todoitem.component.css']
+  styleUrls: ['./todoitem.component.css'],
 })
 export class TodoitemComponent implements OnInit {
   @Input() todo: Todo;
+  @Output() deleteTodo: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {}
 
@@ -16,7 +17,7 @@ export class TodoitemComponent implements OnInit {
   setClasses() {
     let classes = {
       todo: true,
-      'is-complete': this.todo.completed
+      'is-complete': this.todo.completed,
     };
     return classes;
   }
@@ -26,6 +27,7 @@ export class TodoitemComponent implements OnInit {
   }
 
   onDelete(todo) {
-    console.log('delete ');
+    console.log("Inside deleteTodo");
+    this.deleteTodo.emit(todo);
   }
 }
